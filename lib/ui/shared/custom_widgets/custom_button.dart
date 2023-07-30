@@ -12,6 +12,8 @@ class CustomButton extends StatelessWidget {
   final Color? backgroundColor;
   final Function onPressed;
   final String? svgName;
+  final double? widthSize;
+  final double? heightSize;
 
   const CustomButton({
     Key? key,
@@ -23,6 +25,8 @@ class CustomButton extends StatelessWidget {
     this.backgroundColor,
     required this.onPressed,
     this.svgName,
+    this.widthSize,
+    this.heightSize,
   }) : super(key: key);
 
   @override
@@ -56,7 +60,8 @@ class CustomButton extends StatelessWidget {
               : null,
           backgroundColor: backgroundColor ?? AppColors.mainOrangeColor,
           shape: StadiumBorder(),
-          fixedSize: Size(screenWidth(1.1), screenHeight(15))),
+          fixedSize: Size(
+              widthSize ?? screenWidth(1.1), heightSize ?? screenHeight(15))),
     );
   }
 }

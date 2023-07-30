@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:food_order/ui/shared/colors.dart';
-import 'package:food_order/ui/shared/custom_widgets/custom_button.dart';
-import 'package:food_order/ui/views/login_view/login_view.dart';
-import 'package:food_order/ui/shared/utils.dart';
 import 'package:get/get.dart';
+import 'package:location/location.dart';
 
 import '../../../core/translation/app_translation.dart';
+import '../../shared/colors.dart';
+import '../../shared/custom_widgets/custom_button.dart';
+import '../../shared/utils.dart';
+import '../map_view/map_view.dart';
 import '../signup_view/signup_view.dart';
 
 class LandingView extends StatelessWidget {
@@ -67,8 +68,12 @@ class LandingView extends StatelessWidget {
                 CustomButton(
                     text: tr("key_login"),
                     // svgName: 'Facebook',
-                    onPressed: () {
-                      Get.off(LoginView());
+                    onPressed: () async {
+                      LocationData? currentLocation =
+                          await locationService.getCurrentLocation();
+
+                      if (currentLocation != null)
+                        Get.to(MapView(currentLocation: currentLocation));
                     }),
                 SizedBox(
                   height: screenWidth(25),

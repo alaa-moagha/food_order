@@ -10,6 +10,8 @@ import 'package:food_order/ui/views/login_view/login_controller.dart';
 import 'package:get/get.dart';
 import '../../../app/my_app.dart';
 import '../../../core/enums/request_status.dart';
+import 'package:location/location.dart';
+import 'package:geocoding/geocoding.dart' as geo;
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -61,9 +63,8 @@ class _LoginViewState extends State<LoginView> {
               ),
               CustomButton(
                   text: tr("key_login"),
-                  onPressed: () {
-                    // customLoader();
-                    controller.login();
+                  onPressed: () async {
+                    // controller.login();
                   }),
               Padding(
                 padding: EdgeInsets.only(
